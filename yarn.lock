@@ -5018,9 +5018,9 @@ react-native-gesture-handler@^1.1.0:
     invariant "^2.2.2"
     prop-types "^15.5.10"
 
-"react-native-maps@https://github.com/react-native-community/react-native-maps.git#master":
+"react-native-maps@https://github.com/AlexeyVlasenko/react-native-maps.git#master":
   version "0.23.0"
-  resolved "https://github.com/react-native-community/react-native-maps.git#4ee5d78ced9e3974a316e83703fc7e8023c497f8"
+  resolved "https://github.com/AlexeyVlasenko/react-native-maps.git#771c1f1c6b0b9cb435a3312a6bb614878a88cd61"
 
 react-native-safe-area-view@^0.13.0:
   version "0.13.1"
