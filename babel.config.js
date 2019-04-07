@@ -1,13 +1,23 @@
 const presets = ['module:metro-react-native-babel-preset'];
 
+const env = {
+    production: {
+        plugins: ['react-native-paper/babel'],
+    },
+};
+
 const plugins = [
     [
-        require.resolve('babel-plugin-relative-path-import'),
+        'babel-plugin-relative-path-import',
         {
             paths: [
                 {
-                    "rootPathPrefix": "#screens", // `@` is the default so you can remove this if you want
+                    "rootPathPrefix": "#screens",
                     "rootPathSuffix": "./src/screens"
+                },
+                {
+                    "rootPathPrefix": "#theme",
+                    "rootPathSuffix": "./src/res"
                 }
             ]
         }
@@ -19,5 +29,6 @@ const plugins = [
 
 module.exports = {
     presets,
+    env,
     plugins
 };
