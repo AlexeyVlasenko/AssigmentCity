@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
-import { View } from "react-native";
+
+import { Provider as ReduxProvider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+// @TODO: optimize import alias
+import { store, persistor } from './src/lib/store';
 
 class App extends Component {
 	render() {
 		return (
-			<View>
-			</View>
+			<ReduxProvider store={store}>
+				<PersistGate loading={null} persistor={persistor}>
+					{null}
+				</PersistGate>
+			</ReduxProvider>
 		);
 	}
 }
