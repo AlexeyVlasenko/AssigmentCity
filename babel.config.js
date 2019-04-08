@@ -16,6 +16,10 @@ const plugins = [
                     "rootPathSuffix": "./src/screens"
                 },
                 {
+                    "rootPathPrefix": "#store",
+                    "rootPathSuffix": "./src/lib/store"
+                },
+                {
                     "rootPathPrefix": "#theme",
                     "rootPathSuffix": "./src/res"
                 }
