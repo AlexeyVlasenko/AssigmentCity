@@ -36,21 +36,6 @@ const searchCities = (query) => {
     return Promise.resolve(searchResult);
 };
 
-const likeCity = (id) => {
-    const city = cities.find(city => city.id === id);
-
-    if (!city) {
-        return Promise.resolve(false);
-    }
-
-    const mapped = mapCity(city);
-    const { like } = mapped;
-    like.liked = true;
-    like.at = Date.now();
-
-    return Promise.resolve(mapped);
-}
-
 export {
     getCities,
     searchCities,
