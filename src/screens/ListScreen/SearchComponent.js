@@ -4,6 +4,7 @@ import { Platform, SafeAreaView, StyleSheet, View } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { Theme } from "#theme";
 
+// @TODO: Move to functional component
 class SearchComponent extends Component {
     render() {
         const { onChangeText, value, onIconPress } = this.props;
