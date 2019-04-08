@@ -1,0 +1,38 @@
+[
+    {
+        "id": "1",
+        "name": "Santiago",
+        "country": "Ukraine",
+        "description": "A very nice city",
+        "location": [1, 2],
+        "like": {
+            "liked": false,
+            "at": null
+        },
+        "image": "https://i.uaportal.com/2019/4/4/965.jpg?size=960x640"
+    },
+    {
+        "id": "1",
+        "name": "Santiago",
+        "country": "Ukraine",
+        "like": {
+            "liked": false,
+            "at": null
+        },
+        "description": "A very nice city",
+        "location": [1, 2],
+        "image": "https://i.uaportal.com/2019/4/4/965.jpg?size=960x640"
+    },
+    {
+        "id": "1",
+        "name": "Santiago",
+        "country": "Ukraine",
+        "like": {
+            "liked": false,
+            "at": null
+        },
+        "description": "A very nice city",
+        "location": [1, 2],
+        "image": "https://i.uaportal.com/2019/4/4/965.jpg?size=960x640"
+    }
+]
