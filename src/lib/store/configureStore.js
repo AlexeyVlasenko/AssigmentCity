@@ -6,7 +6,7 @@ import storage from 'redux-persist/lib/storage';
 import { composeWithDevtools } from 'redux-devtools-extension';
 import createLogger from 'redux-logger';
 
-import { /* @TODO */ } from './reducers';
+import { cities, likes } from './reducers';
 
 var middleware = [thunk];
 
@@ -18,13 +18,14 @@ if (__DEV__) {
 }
 
 const rootReducer = combineReducers({
-    // @TODO
+    cities,
+    likes,
 });
 
 const rootPersistConfig = {
     key: 'root',
     storage,
-    blacklist: [],
+    blacklist: ['likes'],
 };
 
 const store = createStore(
