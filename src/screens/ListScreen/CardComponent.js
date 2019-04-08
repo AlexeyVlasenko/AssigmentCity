@@ -6,10 +6,10 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 import { Theme } from '#theme'
 import { withNavigation } from "react-navigation";
 
-
 class CardComponent extends Component {
     render() {
-        const { id, name, description, image } = this.props.city;
+        const { city, onLike } = this.props;
+        const { id, name, description, image } = city;
 
         return (
             <Surface style={styles.surfaceContainer}>
@@ -19,7 +19,9 @@ class CardComponent extends Component {
                         <ImageBackground resizeMode={'cover'} style={styles.imageInfoContainer} source={{ uri: image }}>
 
                             <View style={styles.likeContainer}>
+
                                 <Icon name={'favorite-border'} size={32} onPress={() => alert('like')}/>
+
                             </View>
 
                             <View style={styles.locationContainer}>
@@ -98,7 +100,8 @@ const styles = StyleSheet.create({
 
 
 CardComponent.propTypes = {
-    city: PropTypes.object.isRequired
+    city: PropTypes.object.isRequired,
+    onLike: PropTypes.func.isRequired,
 };
 
 

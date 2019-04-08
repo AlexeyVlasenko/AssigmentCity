@@ -5,11 +5,9 @@ export const getCities = () => {
     const type = ActionTypes.GET_CITIES;
 
     return async dispatch => {
-        const cities = await api.getCities();
+        const data = await api.getCities();
 
-        // @TODO: get weather
-
-        dispatch({ type, json });
+        dispatch({ type, data });
     }
 }
 
@@ -17,8 +15,19 @@ export const searchCities = (query) => {
     const type = ActionTypes.SEARCH_CITIES;
 
     return async dispatch => {
-        const json = await api.searchCities(query);
+        const data = await api.searchCities(query);
 
-        dispatch({ type, json });
+        dispatch({ type, data });
     }
+}
+
+export const likeCity = (id) => {
+    const type = ActionTypes.LIKE_CITY;
+    return {
+        type,
+        data: {
+            id,
+            likedAt: Date.now(),
+        },
+    };
 }
