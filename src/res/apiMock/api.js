@@ -2,14 +2,14 @@ import cities from './cities.json';
 import places from './places.json';
 
 const mapCity = (city) => {
-    const sightSeeings = places.filter(place => city.id === place.cityId); 
+    const sightSeeings = places.filter(place => city.id === place.cityId);
 
     return { ...city, sightSeeings };
 };
 
 const getCities = () => {
     const mapped = cities.map(mapCity);
-    
+
     return Promise.resolve(mapped);
 };
 
@@ -39,5 +39,4 @@ const searchCities = (query) => {
 export {
     getCities,
     searchCities,
-    likeCity,
 };

@@ -12,56 +12,56 @@ import CardComponent from "./CardComponent";
 class ListScreen extends Component {
     static navigationOptions = () => ({
         header: null
-	});
+    });
 
     state = {
-		searchQuery: '',
-	};
-	
-	componentDidMount = () => {
-	  const { getCities } = this.props;
-	  getCities();
-	}
+        searchQuery: '',
+    };
+
+    componentDidMount = () => {
+        const { getCities } = this.props;
+        getCities();
+    }
 
     onSearch = (text) => {
-		this.setState({ searchQuery: text });
-		
-		if (text.length > 3) {
-			const { searchCities } = this.props;
-			searchCities(text);
-		}
-	};
-	
-	handleLikeCity = (id) => {
-		const { likeCity } = this.props;
-		likeCity(id);
-	}
+        this.setState({ searchQuery: text });
+
+        if (text.length > 3) {
+            const { searchCities } = this.props;
+            searchCities(text);
+        }
+    };
+
+    handleLikeCity = (id) => {
+        const { likeCity } = this.props;
+        likeCity(id);
+    }
 
     renderCard = ({ item }) => (
-		<CardComponent
-			city={item}
-			onLike={this.handleLikeCity}	
-		/>
-	);
+        <CardComponent
+            city={item}
+            onLike={this.handleLikeCity}
+        />
+    );
 
     render() {
-		const { searchQuery } = this.state;
-		const { searchResult, cities } = this.props;
+        const { searchQuery } = this.state;
+        const { searchResult, cities } = this.props;
 
-		const displayCities = searchResult.length ? searchResult : cities;
+        const displayCities = searchResult.length ? searchResult : cities;
 
         return (
             <View style={{ flex: 1 }}>
                 <SearchComponent
-					value={searchQuery}
-					onChangeText={this.onSearch}
-				/>
+                    value={searchQuery}
+                    onChangeText={this.onSearch}
+                />
 
-                <FlatList 
-					data={displayCities}
+                <FlatList
+                    data={displayCities}
                     renderItem={this.renderCard}
                     keyExtractor={(item) => item.id}
-                    contentContainerStyle={{flexGrow: 1, paddingVertical: 16}}
+                    contentContainerStyle={{ flexGrow: 1, paddingVertical: 16 }}
                 />
             </View>
         );
@@ -69,19 +69,18 @@ class ListScreen extends Component {
 }
 
 const mapState = ({ cities }) => ({
-	cities: cities.cities,
-	searchResult: cities.search,
+    cities: cities.cities,
+    searchResult: cities.search,
 });
 
 const mapDispatch = dispatch => {
-	const { getCities, searchCities } = cities;
-	const { likeCity } = likes;
+    const { getCities, searchCities, likeCity } = cities;
 
-	return bindActionCreators({
-		getCities,
-		searchCities,
-		likeCity,
-	}, dispatch);
-}
+    return bindActionCreators({
+        getCities,
+        searchCities,
+        likeCity,
+    }, dispatch);
+};
 
 export default connect(mapState, mapDispatch)(ListScreen);
