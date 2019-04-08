@@ -1,0 +1,38 @@
+[
+    {
+        "id": "1",
+        "cityId": "1",
+        "location": [1, 2],
+        "name": "Place",
+        "description": "A very nice place",
+        "images": [
+            "https://i.uaportal.com/2019/4/4/965.jpg?size=960x640",
+            "https://i.uaportal.com/2019/4/4/965.jpg?size=960x640",
+            "https://i.uaportal.com/2019/4/4/965.jpg?size=960x640"
+        ]
+    },
+    {
+        "id": "2",
+        "cityId": "1",
+        "location": [1, 2],
+        "name": "Place",
+        "description": "A very nice place",
+        "images": [
+            "https://i.uaportal.com/2019/4/4/965.jpg?size=960x640",
+            "https://i.uaportal.com/2019/4/4/965.jpg?size=960x640",
+            "https://i.uaportal.com/2019/4/4/965.jpg?size=960x640"
+        ]
+    },
+    {
+        "id": "3",
+        "cityId": "1",
+        "location": [1, 2],
+        "name": "Place",
+        "description": "A very nice place",
+        "images": [
+            "https://i.uaportal.com/2019/4/4/965.jpg?size=960x640",
+            "https://i.uaportal.com/2019/4/4/965.jpg?size=960x640",
+            "https://i.uaportal.com/2019/4/4/965.jpg?size=960x640"
+        ]
+    }
+]
