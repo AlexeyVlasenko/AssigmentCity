@@ -1,5 +1,7 @@
-import rootReducer from './rootReducer';
+import cities from './cities';
+import likes from './likes';
 
 export default {
-    rootReducer,
+    cities,
+    likes,
 };
