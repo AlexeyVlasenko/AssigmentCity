@@ -2,22 +2,24 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import { Surface, TouchableRipple } from "react-native-paper";
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 import { Theme } from '#theme'
+import { withNavigation } from "react-navigation";
 
 
 class CardComponent extends Component {
     render() {
-        const { name, description, image } = this.props.city;
+        const { id, name, description, image } = this.props.city;
 
         return (
             <Surface style={styles.surfaceContainer}>
-                <TouchableRipple onPress={() => alert("sad")} style={styles.touchableContainer}>
+                <TouchableRipple onPress={() => this.props.navigation.navigate('City', { cityId: id })}
+                                 style={styles.touchableContainer}>
                     <View>
                         <ImageBackground resizeMode={'cover'} style={styles.imageInfoContainer} source={{ uri: image }}>
 
                             <View style={styles.likeContainer}>
-                                <Icon name={'heart-outline'} size={32} onPress={() => alert('header')}/>
+                                <Icon name={'favorite-border'} size={32} onPress={() => alert('like')}/>
                             </View>
 
                             <View style={styles.locationContainer}>
@@ -100,4 +102,4 @@ CardComponent.propTypes = {
 };
 
 
-export default CardComponent;
+export default withNavigation(CardComponent);
