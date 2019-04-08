@@ -5,6 +5,7 @@ import { Provider as PaperProvider } from 'react-native-paper';
 
 import { Theme } from "#theme";
 import MainNavigator from "./src/lib/navigators/MainNavigator";
+import { StatusBar } from "react-native";
 
 class App extends Component {
     render() {

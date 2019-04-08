@@ -31,6 +31,7 @@
     "babel-plugin-relative-path-import": "^2.0.1",
     "jest": "^24.7.1",
     "metro-react-native-babel-preset": "^0.53.1",
+    "prop-types": "^15.7.2",
     "react-test-renderer": "16.8.3"
   },
   "jest": {

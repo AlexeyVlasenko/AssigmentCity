@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { Platform, SafeAreaView, View } from "react-native";
-import { Button, Searchbar } from "react-native-paper";
-import { Theme } from "#theme";
+import { FlatList, View } from "react-native";
+
+import SearchComponent from "./SearchComponent";
+import CardComponent from "./CardComponent";
+
+import cities from '../../res/apiMock/cities'
 
 class ListScreen extends Component {
     static navigationOptions = () => ({
@@ -9,25 +12,33 @@ class ListScreen extends Component {
     });
 
     state = {
-        firstQuery: ''
+        searchQuery: ''
     };
 
-    render() {
+    onSearch = (text) => {
+        this.setState({ searchQuery: text })
+    };
+
+
+    renderCard = ({ item }) => {
         return (
-            <View>
-                <SafeAreaView style={{ backgroundColor: Theme.HEADER_BG }}>
-                    <View style={{height: Platform.OS === 'ios' ? 44 : 56, justifyContent: 'center', alignSelf: 'center'}}>
-                    <Searchbar
-                        style={{height: '80%', width: '90%'}}
-                        placeholder="Search"
-                        onChangeText={query => {
-                            ;
-                        }}
-                        value={'hey'}
-                    />
-                    </View>
-                </SafeAreaView>
-                <Button mode={'container'} onPress={() => this.props.navigation.navigate('City')}> go to</Button>
+            <CardComponent city={item}/>
+        )
+    };
+
+
+    render() {
+        const { searchQuery } = this.state;
+
+        return (
+            <View style={{ flex: 1 }}>
+                <SearchComponent value={searchQuery} onChangeText={this.onSearch}/>
+
+                <FlatList data={cities}
+                          renderItem={this.renderCard}
+                          keyExtractor={(item) => item.id}
+                          contentContainerStyle={{flexGrow: 1, paddingVertical: 16}}
+                />
             </View>
         );
     }
