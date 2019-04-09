@@ -2,29 +2,50 @@ import { cities as ActionTypes } from '../actionTypes';
 
 const initialState = {
     cities: [],
-    search: [],
     likes: [],
+    searchResult: [],
+    citiesLoading: true,
+    searchLoading: true,
 };
 
-const processLike = (state, data) => {
-    return { ...state, likes: [...likes, data] };
+const indexOfLike = (likes, like) => {
+    for (let index = 0; index < likes.length; index++) {
+        if (likes[index].id === like.id) {
+            return index;
+        }
+    }
+
+    return -1;
+}
+
+const sortCitiesByLikes = (likes) => (first, second) => {
+    const firstLike = likes.find(like => like.id === first.id);
+    const secondLike = likes.find(like => like.id === second.id);
+
+    if (!firstLike && !secondLike) {
+        return String(first.name).toLowerCase().localeCompare(second.name.toLowerCase());
+    } else if (firstLike && secondLike) {
+        return secondLike.likedAt - firstLike.likedAt;
+    } else {
+        return firstLike ? -1 : 1;
+    }
+};
+
+const processLike = (state, like) => {
+    const likes = [...state.likes];
+    const removeAt = indexOfLike(likes, like);
+
+    if (~removeAt) {
+        likes.splice(removeAt, 1);
+    } else {
+        likes.push(like);
+    }
+
+    return { ...state, likes };
 }
 
 const processCities = (state, data) => {
-    const cities = data.sort((first, second) => {
-        const firstLike = state.likes.find(like => like.id === first.id);
-        const secondLike = state.likes.find(like => like.id === second.id);
-
-        if (!firstLike && !secondLike) {
-            return first.name.toUpperCase() - second.name.toUpperCase();
-        } else if (firstLike && secondLike) {
-            return secondLike.likedAt - firstLike.likedAt;
-        } else if (firstLike) {
-            return 1;
-        } else {
-            return -1;
-        }
-    });
+    const cities = data.sort(sortCitiesByLikes(state.likes));
 
     return { ...state, cities };
 }
@@ -35,7 +56,7 @@ export default (state = initialState, action) => {
         case ActionTypes.GET_CITIES:
             return processCities(state, data);
         case ActionTypes.SEARCH_CITIES:
-            return { ...state, search: data };
+            return { ...state, searchResult: data, searchLoading: false };
         case ActionTypes.LIKE_CITY:
             return processLike(state, data);
         default:

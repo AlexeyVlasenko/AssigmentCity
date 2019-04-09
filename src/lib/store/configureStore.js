@@ -5,9 +5,8 @@ import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { createLogger } from 'redux-logger';
+
 import cities from "./reducers/cities";
-
-
 
 var middleware = [thunk];
 

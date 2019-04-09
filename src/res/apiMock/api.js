@@ -7,13 +7,22 @@ const mapCity = (city) => {
     return { ...city, sightSeeings };
 };
 
-const getCities = () => {
-    const mapped = cities.map(mapCity);
+const getCities = () => new Promise(res => {
+    setTimeout(() => res(cities), 500);
+});
 
-    return Promise.resolve(mapped);
-};
+const getCity = (id) => new Promise((resolve, reject) => {
+    const city = cities.find(c => c.id === id);
 
-const searchByNameFor = (query) => ({ name }) => name.test(query);
+    if (!city) {
+        reject(false);
+    }
+
+    const mapped = mapCity(city);
+    setTimeout(() => resolve(mapped), 500);
+});
+
+const searchByNameFor = (query) => ({ name }) => name.match(query);
 
 const getCityByPlace = (place) => {
     return cities.find(city => city.id === place.cityId);
@@ -38,5 +47,6 @@ const searchCities = (query) => {
 
 export {
     getCities,
+    getCity,
     searchCities,
 };
