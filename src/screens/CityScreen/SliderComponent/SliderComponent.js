@@ -17,11 +17,11 @@ export default class SliderComponent extends Component {
     };
 
     get image() {
-        const { data: { illustration }, parallaxProps } = this.props;
+        const { data: { image }, parallaxProps } = this.props;
 
         return (
             <ParallaxImage
-                source={{ uri: illustration }}
+                source={{ uri: image }}
                 containerStyle={styles.imageContainer}
                 style={styles.image}
                 parallaxFactor={0.35}
@@ -33,21 +33,24 @@ export default class SliderComponent extends Component {
     }
 
     proceedDirections = () => {
+        const { data: { location } } = this.props;
         const isIOS = Platform.OS === 'ios';
 
         if (!isIOS) {
-            Linking.openURL("https://www.google.com/maps/dir/?api=1&destination=50.894967,4.341626")
+            Linking.openURL(`https://www.google.com/maps/dir/?api=1&destination=${location[0]},${location[1]}`)
         } else {
-            Linking.openURL("http://maps.apple.com/?daddr=50.894967,4.341626&dirflg=d&t=h")
+            Linking.openURL(`http://maps.apple.com/?daddr=${location[0]},${location[1]}&dirflg=d&t=h`)
         }
     };
 
     proceedUber = () => {
-        Linking.openURL("https://m.uber.com/ul/?client_id=VDtTVW2mkxKS9ygc6RGCQ8jV_1PRwr5p&action=setPickup&pickup[latitude]=37.775818&pickup[longitude]=-122.418028&dropoff[latitude]=37.802374&dropoff[longitude]=-122.405818")
+        const { data: { location } } = this.props;
+
+        Linking.openURL(`https://m.uber.com/ul/?client_id=VDtTVW2mkxKS9ygc6RGCQ8jV_1PRwr5p&action=setPickup&pickup[latitude]=37.775818&pickup[longitude]=-122.418028&dropoff[latitude]=${location[0]}&dropoff[longitude]=${location[1]}`)
     };
 
     render() {
-        const { data: { title, subtitle } } = this.props;
+        const { data: { name, description } } = this.props;
 
         return (
             <View style={styles.slideInnerContainer}>
@@ -55,7 +58,7 @@ export default class SliderComponent extends Component {
 
                     <View style={styles.infoContainer}>
                         <Text style={Theme.textStyles.cardTitle}>
-                            Hawa Mahal
+                            {name}
                         </Text>
                         <Text style={Theme.textStyles.cardDistance}>
                             1.2 KM
@@ -65,20 +68,7 @@ export default class SliderComponent extends Component {
                     <ReadMore
                         numberOfLines={6}>
                         <Text style={Theme.textStyles.cardSubtitle}>
-                            жлывАЬЗЖЛЫВЬАЖЛЫВЬАЖДФЫВ АДФОТУКЖЛПДЫЬВ ЖАЛПТЦЭЖДАЭЙ ФЖЛА ЭЙЭЬДАВ ЙУД/ЬА ТЖЙДЭЬБ;kdm cfa;k
-                            cv;kasd,v;'ad,f /.ad,'l fa,d';f /a
-                            жлывАЬЗЖЛЫВЬАЖЛЫВЬАЖДФЫВ АДФОТУКЖЛПДЫЬВ ЖАЛПТЦЭЖДАЭЙ ФЖЛА ЭЙЭЬДАВ ЙУД/ЬА ТЖЙДЭЬБ;kdm cfa;k
-                            cv;kasd,v;'ad,f /.ad,'l fa,d';f /a
-                            жлывАЬЗЖЛЫВЬАЖЛЫВЬАЖДФЫВ АДФОТУКЖЛПДЫЬВ ЖАЛПТЦЭЖДАЭЙ ФЖЛА ЭЙЭЬДАВ ЙУД/ЬА ТЖЙДЭЬБ;kdm cfa;k
-                            cv;kasd,v;'ad,f /.ad,'l fa,d';f /a
-                            жлывАЬЗЖЛЫВЬАЖЛЫВЬАЖДФЫВ АДФОТУКЖЛПДЫЬВ ЖАЛПТЦЭЖДАЭЙ ФЖЛА ЭЙЭЬДАВ ЙУД/ЬА ТЖЙДЭЬБ;kdm cfa;k
-                            cv;kasd,v;'ad,f /.ad,'l fa,d';f /a
-                            жлывАЬЗЖЛЫВЬАЖЛЫВЬАЖДФЫВ АДФОТУКЖЛПДЫЬВ ЖАЛПТЦЭЖДАЭЙ ФЖЛА ЭЙЭЬДАВ ЙУД/ЬА ТЖЙДЭЬБ;kdm cfa;k
-                            cv;kasd,v;'ad,f /.ad,'l fa,d';f /a
-                            жлывАЬЗЖЛЫВЬАЖЛЫВЬАЖДФЫВ АДФОТУКЖЛПДЫЬВ ЖАЛПТЦЭЖДАЭЙ ФЖЛА ЭЙЭЬДАВ ЙУД/ЬА ТЖЙДЭЬБ;kdm cfa;k
-                            cv;kasd,v;'ad,f /.ad,'l fa,d';f /a
-                            жлывАЬЗЖЛЫВЬАЖЛЫВЬАЖДФЫВ АДФОТУКЖЛПДЫЬВ ЖАЛПТЦЭЖДАЭЙ ФЖЛА ЭЙЭЬДАВ ЙУД/ЬА ТЖЙДЭЬБ;kdm cfa;k
-                            cv;kasd,v;'ad,f /.ad,'l fa,d';f /a
+                            {description}
                         </Text>
                     </ReadMore>
 

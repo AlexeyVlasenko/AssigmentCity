@@ -1,38 +1,35 @@
 [
-    {
-        "id": "1",
-        "cityId": "1",
-        "location": [1, 2],
-        "name": "Place",
-        "description": "A very nice place",
-        "images": [
-            "https://i.uaportal.com/2019/4/4/965.jpg?size=960x640",
-            "https://i.uaportal.com/2019/4/4/965.jpg?size=960x640",
-            "https://i.uaportal.com/2019/4/4/965.jpg?size=960x640"
-        ]
-    },
-    {
-        "id": "2",
-        "cityId": "1",
-        "location": [1, 2],
-        "name": "Place",
-        "description": "A very nice place",
-        "images": [
-            "https://i.uaportal.com/2019/4/4/965.jpg?size=960x640",
-            "https://i.uaportal.com/2019/4/4/965.jpg?size=960x640",
-            "https://i.uaportal.com/2019/4/4/965.jpg?size=960x640"
-        ]
-    },
-    {
-        "id": "3",
-        "cityId": "1",
-        "location": [1, 2],
-        "name": "Place",
-        "description": "A very nice place",
-        "images": [
-            "https://i.uaportal.com/2019/4/4/965.jpg?size=960x640",
-            "https://i.uaportal.com/2019/4/4/965.jpg?size=960x640",
-            "https://i.uaportal.com/2019/4/4/965.jpg?size=960x640"
-        ]
-    }
+  {
+    "id": "1",
+    "cityId": "1",
+    "location": [
+      50.4505,
+      30.5230
+    ],
+    "name": "Maidan Nezalezhnosti",
+    "description": "Maidan Nezalezhnosti (literally: Independence Square) is the central square of Kiev, the capital city of Ukraine. One of the city's main squares, it is located on Khreshchatyk Street in the Shevchenko Raion. The square has been known under many different names, but often it is called simply Maidan.",
+    "image": "http://bm.img.com.ua/berlin/storage/news/orig/0/0d/34bc0f396ffe980e4ee0b8fc4d4990d0.jpg"
+  },
+  {
+    "id": "2",
+    "cityId": "1",
+    "location": [
+      50.4545,
+      30.5300
+    ],
+    "name": "People's Friendship Arch",
+    "description": "The People's Friendship Arch is a monument in Kiev, the capital of Ukraine. It was opened together with the All-Union Lenin Museum (today, Ukrainian House) on November 7, 1982 to commemorate the 60th Anniversary of the USSR and the celebration of the 1,500th Anniversary of the Kiev city.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/36/Kiev-Park-Bridge-pano.jpg"
+  },
+  {
+    "id": "3",
+    "cityId": "1",
+    "location": [
+      50.377793,
+      30.479604
+    ],
+    "name": "Expocenter of Ukraine",
+    "description": "Expocenter of Ukraine is a permanent multi-purpose exhibition complex in the Teremky neighborhood of Kiev, Ukraine. Located on the outskirts of the scenic Holosiiv Forest bigger portion of which has been converted into a park zone, the expo specializes in demonstrating Ukrainian achievements in the sphere of industry, science, and so on.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Kiev_Expocenter_070628.jpg"
+  }
 ]

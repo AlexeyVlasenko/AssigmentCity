@@ -19,6 +19,7 @@ const Header = {
 
 const Card = {
     CARD_BG: grey,
+    LIKE_COLOR: amber,
     DOT_COLOR: amberDark,
     SHOW_MORE_COLOR: amberDark
 };

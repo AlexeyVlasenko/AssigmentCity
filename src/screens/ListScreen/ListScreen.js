@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList, View, RefreshControl } from "react-native";
+import { FlatList, RefreshControl, View } from "react-native";
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -10,114 +10,114 @@ import SearchComponent from "./SearchComponent";
 import CardComponent from "./CardComponent";
 
 class ListScreen extends Component {
-	static navigationOptions = () => ({
-		header: null
-	});
+    static navigationOptions = () => ({
+        header: null
+    });
 
-	state = {
-		searchQuery: '',
-		refreshing: false,
-		searching: false,
-	};
+    state = {
+        searchQuery: '',
+        refreshing: false,
+        searching: false,
+    };
 
-	componentDidMount = () => {
-		const { getCities } = this.props;
-		getCities();
-	}
+    componentDidMount = () => {
+        const { getCities } = this.props;
+        getCities();
+    };
 
-	handleSearchTextChange = (text) => {
-		const { searchQuery } = this.state;
-		
-		if (text.length > 3) {
-			this.handleSearch();
-		} else if (text.length < searchQuery.length) {
-			this.setState({ searching: false });
-		}
+    handleSearchTextChange = (text) => {
+        const { searchQuery } = this.state;
 
-		this.setState({ searchQuery: text });
-	};
+        if (text.length > 3) {
+            this.handleSearch();
+        } else if (text.length < searchQuery.length) {
+            this.setState({ searching: false });
+        }
 
-	handleSearch = () => {
-		const { searchQuery } = this.state;
-		const { searchCities } = this.props;
+        this.setState({ searchQuery: text });
+    };
 
-		this.setState({ searching: true });
-		searchCities(searchQuery);
-	}
+    handleSearch = () => {
+        const { searchQuery } = this.state;
+        const { searchCities } = this.props;
 
-	handleLikeCity = (id) => {
-		const { likeCity } = this.props;
-		likeCity(id);
-	}
+        this.setState({ searching: true });
+        searchCities(searchQuery);
+    };
 
-	handleRefresh = () => {
-		const { getCities } = this.props;
-		getCities();
-	}
+    handleLikeCity = (id) => {
+        const { likeCity } = this.props;
+        likeCity(id);
+    };
 
-	renderCard = ({ item }) => {
-		const { likes } = this.props;
-		const isLiked = !!likes.find(like => like.id === item.id);
+    handleRefresh = async () => {
+        const { getCities } = this.props;
+        this.setState({ refreshing: true });
+        await getCities();
+        this.setState({ refreshing: false })
+    };
 
-		return (
-			<CardComponent
-				city={item}
-				isLiked={isLiked}
-				onLike={this.handleLikeCity}
-			/>
-		);
-	}
+    renderCard = ({ item }) => {
+        const { likes } = this.props;
+        const isLiked = !!likes.find(like => like.id === item.id);
 
-	render() {
-		const { searchQuery, searching, refreshing } = this.state;
-		const { searchResult, cities, citiesLoading, searchLoading } = this.props;
+        return (
+            <CardComponent
+                city={item}
+                isLiked={isLiked}
+                onLike={this.handleLikeCity}
+            />
+        );
+    };
 
-		const displayCities = searching ? searchResult : cities;
-		const loading = searching ? searchLoading : citiesLoading;
+    render() {
+        const { searchQuery, searching, refreshing } = this.state;
+        const { searchResult, cities, citiesLoading, searchLoading } = this.props;
+        const displayCities = searching ? searchResult : cities;
+        const loading = searching ? searchLoading : citiesLoading;
 
-		return (
-			<View style={{ flex: 1 }}>
-				<SearchComponent
-					value={searchQuery}
-					onChangeText={this.handleSearchTextChange}
-				/>
+        return (
+            <View style={{ flex: 1 }}>
+                <SearchComponent
+                    value={searchQuery}
+                    onChangeText={this.handleSearchTextChange}
+                />
 
-				{(loading && !refreshing) ? <View /> : (
-					<FlatList
-						data={displayCities}
-						renderItem={this.renderCard}
-						extraData={cities}
-						refreshControl={
-							<RefreshControl
-								refreshing={refreshing}
-								onRefresh={this.handleRefresh}
-							/>
-						}
-						keyExtractor={(item) => item.id}
-						contentContainerStyle={{ flexGrow: 1, paddingVertical: 16 }}
-					/>
-				)}
-			</View>
-		);
-	}
+                {(loading) ? <View/> : (
+                    <FlatList
+                        data={displayCities}
+                        renderItem={this.renderCard}
+                        refreshControl={
+                            <RefreshControl
+                                refreshing={refreshing}
+                                onRefresh={this.handleRefresh}
+                            />
+                        }
+                        keyExtractor={(item) => item.id.toString()}
+                        contentContainerStyle={{ flexGrow: 1, paddingVertical: 16 }}
+                    />
+                )}
+            </View>
+        );
+    }
 }
 
 const mapState = ({ cities }) => ({
-	cities: cities.cities,
-	likes: cities.likes,
-	searchResult: cities.searchResult,
-	citiesLoading: cities.citiesLoading,
-	searchLoading: cities.searchLoading,
+    cities: cities.cities,
+    likes: cities.likes,
+    searchResult: cities.searchResult,
+    citiesLoading: cities.citiesLoading,
+    searchLoading: cities.searchLoading,
 });
 
 const mapDispatch = dispatch => {
-	const { getCities, searchCities, likeCity } = citiesActions;
+    const { getCities, searchCities, likeCity } = citiesActions;
 
-	return bindActionCreators({
-		getCities,
-		searchCities,
-		likeCity,
-	}, dispatch);
+    return bindActionCreators({
+        getCities,
+        searchCities,
+        likeCity,
+    }, dispatch);
 };
 
 export default connect(mapState, mapDispatch)(ListScreen);

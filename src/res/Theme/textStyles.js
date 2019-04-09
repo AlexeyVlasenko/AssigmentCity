@@ -1,17 +1,17 @@
 module.exports = {
     heading: {
         fontSize: 24,
-        color: 'black',
+        color: 'white',
         fontWeight: 'bold',
         textTransform: 'uppercase'
     },
     temperature: {
         fontSize: 12,
-        color: 'black',
+        color: 'white',
     },
     distance: {
         fontSize: 16,
-        color: 'black',
+        color: 'white',
     },
     description: {
         fontSize: 14,
@@ -19,9 +19,8 @@ module.exports = {
     },
     cardTitle: {
         color: 'black',
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: 'bold',
-        textTransform: 'uppercase',
         letterSpacing: 0.5
     },
     cardDistance: {

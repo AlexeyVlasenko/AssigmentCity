@@ -11,7 +11,7 @@ class CardComponent extends Component {
     state = {
         weather: {
             temp: '',
-            status: '',
+            condition: '',
         },
         weatherLoading: true,
     };
@@ -24,10 +24,10 @@ class CardComponent extends Component {
         const { location } = this.props.city;
         const weather = await getWeather(location);
 
-        const temp = (weather.main.temp - 273.15).toFixed(2);
-        const status = weather.weather.pop()['main'];
+        const temp = `${parseInt(weather.main.temp - 273.15)}°`;
+        const condition = weather.weather.pop()['main'];
 
-        this.setState({ weather: { temp, status }, weatherLoading: false });
+        this.setState({ weather: { temp, condition }, weatherLoading: false });
     }
 
     render() {
@@ -43,30 +43,38 @@ class CardComponent extends Component {
                     style={styles.touchableContainer}
                 >
                     <View>
-                        <ImageBackground resizeMode={'cover'} style={styles.imageInfoContainer} source={{ uri: image }}>
+                        <ImageBackground resizeMode={'cover'} blurRadius={3} style={styles.imageInfoContainer}
+                                         source={{ uri: image }}>
 
-                            <View style={styles.likeContainer}>
+                            <View style={styles.overlayContainer}>
 
-                                <Icon name={isLiked ? 'favorite' : 'favorite-border'} size={32} onPress={() => onLike(id)} />
+                                <View style={styles.likeContainer}>
 
-                            </View>
+                                    <Icon name={isLiked ? 'favorite' : 'favorite-border'} size={32}
+                                          onPress={() => onLike(id)} color={Theme.LIKE_COLOR}/>
 
-                            <View style={styles.locationContainer}>
-                                <View style={styles.rowContainer}>
+                                </View>
 
-                                    <View style={styles.cityTextContainer}>
-                                        <Text style={Theme.textStyles.heading}>{name}</Text>
-                                    </View>
+                                <View style={styles.locationContainer}>
+                                    <View style={styles.rowContainer}>
 
-                                    <View style={styles.infoTextContainer}>
-                                        {weatherLoading ? <View /> : <Text style={Theme.textStyles.temperature}>{`${weather.temp} ${weather.status}`}</Text>}
+                                        <View style={styles.cityTextContainer}>
+                                            <Text style={Theme.textStyles.heading}>{name}</Text>
+                                        </View>
 
-                                        <View style={styles.distanceContainer}>
-                                            <Text style={Theme.textStyles.distance}>3 km</Text>
-                                            <Icon name={'chevron-right'} size={24} style={{ width: 16 }} />
+                                        <View style={styles.infoTextContainer}>
+                                            <Text
+                                                style={Theme.textStyles.temperature}>{weatherLoading ? '' : `${weather.temp} ${weather.condition}`}</Text>
+
+                                            <View style={styles.distanceContainer}>
+                                                <Text style={Theme.textStyles.distance}>3 km</Text>
+                                                <Icon name={'chevron-right'} size={24} style={{ width: 16 }}
+                                                      color={'white'}/>
+                                            </View>
                                         </View>
                                     </View>
                                 </View>
+
                             </View>
 
                         </ImageBackground>
@@ -86,7 +94,7 @@ const styles = StyleSheet.create({
     surfaceContainer: {
         width: '95%',
         alignSelf: 'center',
-        elevation: 2,
+        elevation: 4,
         marginBottom: 8
     },
     touchableContainer: {
@@ -94,6 +102,10 @@ const styles = StyleSheet.create({
     },
     imageInfoContainer: {
         height: 150,
+    },
+    overlayContainer: {
+        flex: 1,
+        backgroundColor: 'rgba(0,0,0,0.5)',
         paddingHorizontal: 8,
         paddingTop: 8
     },
@@ -103,7 +115,7 @@ const styles = StyleSheet.create({
     },
     locationContainer: {
         flex: 1,
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
     },
     rowContainer: {
         flexDirection: 'row',

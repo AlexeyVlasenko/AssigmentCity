@@ -6,6 +6,9 @@ import { itemWidth, SliderComponent, sliderWidth } from './SliderComponent';
 import { ENTRIES1 } from "./entries";
 import MapView, { Marker } from "react-native-maps";
 import { Theme } from '#theme'
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { cityActions } from '#store/actionCreators';
 
 const regions = [
     {
@@ -30,23 +33,81 @@ const regions = [
 
 class CityScreen extends Component {
     static navigationOptions = ({ navigation }) => ({
-        title: 'City Name',
+        title: navigation.getParam('cityName'),
         headerLeft: <IconButton icon='chevron-left' size={32} style={{ width: 32 }}
                                 onPress={() => navigation.goBack()}/>,
         headerRight: <IconButton icon='favorite-border' size={26}
                                  onPress={() => alert('like')}/>
     });
 
-
     state = {
         slider1ActiveSlide: 0,
-        dataFetched: false
     };
 
     componentDidMount() {
-        InteractionManager.runAfterInteractions(() => {
-            this.setState({ dataFetched: true })
+        InteractionManager.runAfterInteractions(async () => {
+            const { getCity, navigation } = this.props;
+
+            await getCity(navigation.getParam('cityId'));
+
+            navigation.setParams({ cityName: this.props.currentCity.name })
         });
+    }
+
+    componentWillUnmount() {
+        const { resetCity } = this.props;
+        resetCity();
+    }
+
+
+    async animateCamera(index) {
+        const { currentCity: { sightSeeings } } = this.props;
+        const camera = await this.map.getCamera();
+        console.log(camera)
+        camera.center.latitude = sightSeeings[index].location[0];
+        camera.center.longitude = sightSeeings[index].location[1];
+        camera.pitch = 0;
+        camera.heading = 90;
+        camera.altitude = 1000;
+        camera.zoom = 15;
+        this.map.animateCamera(camera, { duration: 1000 });
+    }
+
+    renderMap() {
+        const { currentCity: { sightSeeings } } = this.props;
+
+        const [latitude, longitude] = sightSeeings[0].location;
+
+        return (
+            <MapView
+                provider={'google'}
+                initialCamera={{
+                    center: {
+                        latitude,
+                        longitude,
+                    },
+                    pitch: 0,
+                    heading: 90,
+                    altitude: 1000,
+                    zoom: 15,
+                }}
+                ref={ref => {
+                    this.map = ref;
+                }}
+                style={{ height: 200, width: '100%' }}
+            >
+                {sightSeeings.map((sightSeeing, index) => {
+                    const [latitude, longitude] = sightSeeing.location;
+
+                    return (
+                        <Marker
+                            key={index.toString()}
+                            coordinate={{ latitude, longitude }}
+                        />
+                    )
+                })}
+            </MapView>
+        )
     }
 
 
@@ -61,6 +122,7 @@ class CityScreen extends Component {
     }
 
     renderCarousel() {
+        const { currentCity: { sightSeeings } } = this.props;
         const { slider1ActiveSlide } = this.state;
 
         return (
@@ -82,7 +144,7 @@ class CityScreen extends Component {
                 />
                 <Carousel
                     ref={c => this._slider1Ref = c}
-                    data={ENTRIES1}
+                    data={sightSeeings}
                     renderItem={this._renderItemWithParallax}
                     sliderWidth={sliderWidth}
                     itemWidth={itemWidth}
@@ -104,55 +166,20 @@ class CityScreen extends Component {
     }
 
 
-    async animateCamera(index) {
-        const camera = await this.map.getCamera();
-        camera.center.latitude = regions[index].latitude;
-        camera.center.longitude = regions[index].longitude;
-        this.map.animateCamera(camera, { duration: 1000 });
-    }
-
     render() {
-        const { dataFetched } = this.state;
+        const { cityLoading } = this.props;
 
-        if (dataFetched) {
+        if (!cityLoading) {
+
             return (
                 <ScrollView contentContainerStyle={{ flexGrow: 1 }} style={{ backgroundColor: Theme.BG }}>
-
-                    <MapView
-                        provider={'google'}
-                        initialCamera={{
-                            center: {
-                                latitude: 37.78825,
-                                longitude: -122.4324,
-                            },
-                            pitch: 0,
-                            heading: 90,
-                            altitude: 1000,
-                            zoom: 15,
-                        }}
-                        ref={ref => {
-                            this.map = ref;
-                        }}
-                        style={{ height: 200, width: '100%' }}
-                    >
-                        {regions.map((region, index) => {
-                            return (
-                                <Marker
-                                    key={index.toString()}
-                                    coordinate={region}
-                                />
-                            )
-                        })}
-                    </MapView>
-
-
+                    {this.renderMap()}
                     {this.renderCarousel()}
                 </ScrollView>
             );
-        }
-        else {
+        } else {
             return (
-                <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                     <ActivityIndicator animating={true} size={'large'}/>
                 </View>
             )
@@ -160,4 +187,18 @@ class CityScreen extends Component {
     }
 }
 
-export default CityScreen;
+const mapState = ({ city }) => ({
+    currentCity: city.city,
+    cityLoading: city.cityLoading
+});
+
+const mapDispatch = dispatch => {
+    const { getCity, resetCity } = cityActions;
+
+    return bindActionCreators({
+        getCity,
+        resetCity
+    }, dispatch);
+};
+
+export default connect(mapState, mapDispatch)(CityScreen);
