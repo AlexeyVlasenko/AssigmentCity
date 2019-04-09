@@ -82,7 +82,7 @@ class ListScreen extends Component {
 					onChangeText={this.handleSearchTextChange}
 				/>
 
-				{(loading && !refreshing) ? <View /> : (
+				{loading ? <View /> : (
 					<FlatList
 						data={displayCities}
 						renderItem={this.renderCard}

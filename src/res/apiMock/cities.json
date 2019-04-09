@@ -1,6 +1,6 @@
 [
     {
-        "id": "1",
+        "id": "asdasda",
         "name": "Kriviy Rih",
         "country": "Ukraine",
         "description": "A very nice cityA very nice cityA very nice cityA very nice cityA very nice cityA very nice cityA very nice cityA very nice cityA very nice cityA very nice cityA very nice cityA very nice cityA very nice city",
@@ -12,49 +12,33 @@
         "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Banner_of_Kryvyi_Rih.svg/1200px-Banner_of_Kryvyi_Rih.svg.png"
     },
     {
-        "id": "2",
+        "id": "fgghfgh2",
         "name": "Santiago",
         "country": "Ukraine",
-        "like": {
-            "liked": false,
-            "at": null
-        },
         "description": "A very nice city",
         "location": [1, 2],
         "image": "https://i.uaportal.com/2019/4/4/965.jpg?size=960x640"
     },
     {
-        "id": "3",
+        "id": "3asdgd",
         "name": "London",
         "country": "Ukraine",
-        "like": {
-            "liked": false,
-            "at": null
-        },
         "description": "A very nice city",
         "location": [1, 2],
         "image": "https://img02.rl0.ru/91956e2b6a57e666d39f55ff8100026d/e1200x800/news.rambler.ru/img/2019/02/10115232.731493.2555.jpg"
     },
     {
-        "id": "4",
+        "id": "4aff",
         "name": "Chicago",
         "country": "Ukraine",
-        "like": {
-            "liked": false,
-            "at": null
-        },
         "description": "A very nice city",
         "location": [1, 2],
         "image": "https://i.ytimg.com/vi/x3yM_WiJJng/maxresdefault.jpg"
     },
     {
-        "id": "5",
+        "id": "5asdfasf",
         "name": "Kyiv",
         "country": "Ukraine",
-        "like": {
-            "liked": false,
-            "at": null
-        },
         "description": "A very nice city",
         "location": [1, 2],
         "image": "https://beztabu.net/uploads/770x433_DIR/media_news/2019/04/5cab369f10e6e655839144.jpg"

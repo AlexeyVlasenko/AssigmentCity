@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
-import { Surface, TouchableRipple } from "react-native-paper";
-import Icon from 'react-native-vector-icons/MaterialIcons'
-import { Theme } from '#theme'
+import PropTypes from 'prop-types';
 import { withNavigation } from "react-navigation";
+import { ImageBackground, StyleSheet, Text, View } from "react-native";
+
+import { Surface, TouchableRipple } from "react-native-paper";
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
+import { Theme } from '#theme'
 import { getWeather } from '../../lib/utils/weather';
+import { getDistance } from '../../lib/utils/location/common';
+import { LocationContext } from '../../lib/utils/location/locationContext';
 
 class CardComponent extends Component {
     state = {
@@ -30,8 +34,23 @@ class CardComponent extends Component {
         this.setState({ weather: { temp, status }, weatherLoading: false });
     }
 
+    _renderDistance = ({ location }) => {
+        if (!location) {
+            return <View />;
+        }
+        
+        const { location: cityLocation } = this.props.city;
+        const { latitude, longitude } = location.coords;
+        const distance = getDistance([latitude, longitude], cityLocation);
+        return (
+            <View style={styles.distanceContainer}>
+                <Text style={Theme.textStyles.distance}>{distance.toFixed(2)}</Text>
+                <Icon name={'chevron-right'} size={24} style={{ width: 16 }} />
+            </View>
+        );
+    }
+
     render() {
-        // @TODO: Use isLiked
         const { city, onLike, isLiked } = this.props;
         const { id, name, description, image } = city;
         const { weather, weatherLoading } = this.state;
@@ -60,11 +79,9 @@ class CardComponent extends Component {
 
                                     <View style={styles.infoTextContainer}>
                                         {weatherLoading ? <View /> : <Text style={Theme.textStyles.temperature}>{`${weather.temp} ${weather.status}`}</Text>}
-
-                                        <View style={styles.distanceContainer}>
-                                            <Text style={Theme.textStyles.distance}>3 km</Text>
-                                            <Icon name={'chevron-right'} size={24} style={{ width: 16 }} />
-                                        </View>
+                                        <LocationContext.Consumer>
+                                            {this._renderDistance}
+                                        </LocationContext.Consumer>
                                     </View>
                                 </View>
                             </View>
@@ -131,6 +148,5 @@ CardComponent.propTypes = {
     onLike: PropTypes.func.isRequired,
     isLiked: PropTypes.bool,
 };
-
 
 export default withNavigation(CardComponent);

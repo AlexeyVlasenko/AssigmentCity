@@ -1,4 +1,4 @@
-import { city as ActionTypes } from '../actionCreators';
+import { city as ActionTypes } from '../actionTypes';
 
 const initialState = {
     city: null,

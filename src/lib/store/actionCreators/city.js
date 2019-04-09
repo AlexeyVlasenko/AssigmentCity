@@ -1,4 +1,4 @@
-import { city as ActionTypes } from '../actionCreators';
+import { city as ActionTypes } from '../actionTypes';
 
 export const getCity = (id) => {
     const type = ActionTypes.GET_CITY;
