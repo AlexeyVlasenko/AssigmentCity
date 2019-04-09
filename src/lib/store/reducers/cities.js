@@ -47,7 +47,7 @@ const processLike = (state, like) => {
 const processCities = (state, data) => {
     const cities = data.sort(sortCitiesByLikes(state.likes));
 
-    return { ...state, cities };
+    return { ...state, cities, citiesLoading: false };
 }
 
 export default (state = initialState, action) => {
