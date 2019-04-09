@@ -20,7 +20,6 @@ class LocationProvider extends Component {
     initObserver = async () => {
         const { watchPosition } = navigator.geolocation;
 
-        console.warn(await this.requestLocPermission());
 
         if (await this.requestLocPermission()) {
             const { getCurrentPosition } = navigator.geolocation;
@@ -50,13 +49,11 @@ class LocationProvider extends Component {
             );
             return granted === PermissionsAndroid.RESULTS.GRANTED;
         } catch (err) {
-            console.warn(err);
             return false;
         }
     };
 
     handleLocationChange = (location) => {
-        console.warn(location)
         this.setState({ location });
     };
 

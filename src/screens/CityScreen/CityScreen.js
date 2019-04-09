@@ -3,41 +3,19 @@ import { InteractionManager, ScrollView, View } from "react-native";
 import { ActivityIndicator, IconButton } from "react-native-paper";
 import Carousel, { Pagination } from "react-native-snap-carousel";
 import { itemWidth, SliderComponent, sliderWidth } from './SliderComponent';
-import { ENTRIES1 } from "./entries";
 import MapView, { Marker } from "react-native-maps";
 import { Theme } from '#theme'
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { cityActions } from '#store/actionCreators';
-
-const regions = [
-    {
-        latitude: 37.78825,
-        longitude: -122.4324,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
-    },
-    {
-        latitude: 37.68825,
-        longitude: -122.4324,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
-    },
-    {
-        latitude: 37.58825,
-        longitude: -122.4324,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
-    }
-]
+import { citiesActions, cityActions } from '#store/actionCreators';
+import LikeButton from "./LikeButton";
 
 class CityScreen extends Component {
     static navigationOptions = ({ navigation }) => ({
         title: navigation.getParam('cityName'),
         headerLeft: <IconButton icon='chevron-left' size={32} style={{ width: 32 }}
                                 onPress={() => navigation.goBack()}/>,
-        headerRight: <IconButton icon='favorite-border' size={26}
-                                 onPress={() => alert('like')}/>
+        headerRight: <LikeButton cityId={navigation.getParam('cityId')}/>
     });
 
     state = {
@@ -50,7 +28,7 @@ class CityScreen extends Component {
 
             await getCity(navigation.getParam('cityId'));
 
-            navigation.setParams({ cityName: this.props.currentCity.name })
+            navigation.setParams({ cityName: this.props.currentCity.name, onLike: this.handleLikeCity })
         });
     }
 
@@ -63,7 +41,7 @@ class CityScreen extends Component {
     async animateCamera(index) {
         const { currentCity: { sightSeeings } } = this.props;
         const camera = await this.map.getCamera();
-        console.log(camera)
+
         camera.center.latitude = sightSeeings[index].location[0];
         camera.center.longitude = sightSeeings[index].location[1];
         camera.pitch = 0;
@@ -128,7 +106,7 @@ class CityScreen extends Component {
         return (
             <View>
                 <Pagination
-                    dotsLength={ENTRIES1.length}
+                    dotsLength={sightSeeings.length}
                     activeDotIndex={slider1ActiveSlide}
                     dotColor={Theme.DOT_COLOR}
                     dotStyle={{
@@ -187,9 +165,9 @@ class CityScreen extends Component {
     }
 }
 
-const mapState = ({ city }) => ({
+const mapState = ({ city, cities }) => ({
     currentCity: city.city,
-    cityLoading: city.cityLoading
+    cityLoading: city.cityLoading,
 });
 
 const mapDispatch = dispatch => {
