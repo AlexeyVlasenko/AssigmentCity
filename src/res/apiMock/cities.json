@@ -1,7 +1,7 @@
 [
     {
         "id": "1",
-        "name": "Santiago",
+        "name": "Kriviy Rih",
         "country": "Ukraine",
         "description": "A very nice cityA very nice cityA very nice cityA very nice cityA very nice cityA very nice cityA very nice cityA very nice cityA very nice cityA very nice cityA very nice cityA very nice cityA very nice city",
         "location": [1, 2],
@@ -25,7 +25,7 @@
     },
     {
         "id": "3",
-        "name": "Santiago",
+        "name": "London",
         "country": "Ukraine",
         "like": {
             "liked": false,
@@ -33,11 +33,11 @@
         },
         "description": "A very nice city",
         "location": [1, 2],
-        "image": "https://i.uaportal.com/2019/4/4/965.jpg?size=960x640"
+        "image": "https://img02.rl0.ru/91956e2b6a57e666d39f55ff8100026d/e1200x800/news.rambler.ru/img/2019/02/10115232.731493.2555.jpg"
     },
     {
         "id": "4",
-        "name": "Santiago",
+        "name": "Chicago",
         "country": "Ukraine",
         "like": {
             "liked": false,
@@ -45,11 +45,11 @@
         },
         "description": "A very nice city",
         "location": [1, 2],
-        "image": "https://i.uaportal.com/2019/4/4/965.jpg?size=960x640"
+        "image": "https://i.ytimg.com/vi/x3yM_WiJJng/maxresdefault.jpg"
     },
     {
         "id": "5",
-        "name": "Santiago",
+        "name": "Kyiv",
         "country": "Ukraine",
         "like": {
             "liked": false,
@@ -57,6 +57,6 @@
         },
         "description": "A very nice city",
         "location": [1, 2],
-        "image": "https://i.uaportal.com/2019/4/4/965.jpg?size=960x640"
+        "image": "https://beztabu.net/uploads/770x433_DIR/media_news/2019/04/5cab369f10e6e655839144.jpg"
     }
 ]

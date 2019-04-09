@@ -5,22 +5,49 @@ import { Surface, TouchableRipple } from "react-native-paper";
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { Theme } from '#theme'
 import { withNavigation } from "react-navigation";
+import { getWeather } from '../../lib/utils/weather';
 
 class CardComponent extends Component {
+    state = {
+        weather: {
+            temp: '',
+            status: '',
+        },
+        weatherLoading: true,
+    };
+
+    componentDidMount = () => {
+        this.getWeather();
+    }
+
+    getWeather = async () => {
+        const { location } = this.props.city;
+        const weather = await getWeather(location);
+
+        const temp = (weather.main.temp - 273.15).toFixed(2);
+        const status = weather.weather.pop()['main'];
+
+        this.setState({ weather: { temp, status }, weatherLoading: false });
+    }
+
     render() {
-        const { city, onLike } = this.props;
+        // @TODO: Use isLiked
+        const { city, onLike, isLiked } = this.props;
         const { id, name, description, image } = city;
+        const { weather, weatherLoading } = this.state;
 
         return (
             <Surface style={styles.surfaceContainer}>
-                <TouchableRipple onPress={() => this.props.navigation.navigate('City', { cityId: id })}
-                                 style={styles.touchableContainer}>
+                <TouchableRipple
+                    onPress={() => this.props.navigation.navigate('City', { cityId: id })}
+                    style={styles.touchableContainer}
+                >
                     <View>
                         <ImageBackground resizeMode={'cover'} style={styles.imageInfoContainer} source={{ uri: image }}>
 
                             <View style={styles.likeContainer}>
 
-                                <Icon name={'favorite-border'} size={32} onPress={() => alert('like')}/>
+                                <Icon name={isLiked ? 'favorite' : 'favorite-border'} size={32} onPress={() => onLike(id)} />
 
                             </View>
 
@@ -32,11 +59,11 @@ class CardComponent extends Component {
                                     </View>
 
                                     <View style={styles.infoTextContainer}>
-                                        <Text style={Theme.textStyles.temperature}>20%c Haze</Text>
+                                        {weatherLoading ? <View /> : <Text style={Theme.textStyles.temperature}>{`${weather.temp} ${weather.status}`}</Text>}
 
                                         <View style={styles.distanceContainer}>
                                             <Text style={Theme.textStyles.distance}>3 km</Text>
-                                            <Icon name={'chevron-right'} size={24} style={{ width: 16 }}/>
+                                            <Icon name={'chevron-right'} size={24} style={{ width: 16 }} />
                                         </View>
                                     </View>
                                 </View>
@@ -102,6 +129,7 @@ const styles = StyleSheet.create({
 CardComponent.propTypes = {
     city: PropTypes.object.isRequired,
     onLike: PropTypes.func.isRequired,
+    isLiked: PropTypes.bool,
 };
 
 

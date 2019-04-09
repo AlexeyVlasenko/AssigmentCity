@@ -1,5 +1,9 @@
-import * as cities from './cities';
+import * as citiesActions from './cities';
+import * as cityActions from './city';
+import * as userActions from './user';
 
 module.exports = {
-    cities,
+    citiesActions,
+    cityActions,
+    userActions,
 };
