@@ -6,9 +6,21 @@ const black = 'black';
 const amber = '#ffc107';
 const amberDark = '#c79100';
 
+const grey = '#e0e0e0';
+
+const Screen = {
+    BG: white
+};
+
 const Header = {
     HEADER_BG: amber,
     HEADER_LINE: amberDark
+};
+
+const Card = {
+    CARD_BG: grey,
+    DOT_COLOR: amberDark,
+    SHOW_MORE_COLOR: amberDark
 };
 
 const appTheme = {
@@ -23,5 +35,7 @@ const appTheme = {
 
 module.exports = {
     appTheme,
-    ...Header
+    ...Screen,
+    ...Header,
+    ...Card
 };

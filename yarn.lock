@@ -5195,7 +5195,7 @@ react-native-gesture-handler@^1.1.0:
 
 "react-native-maps@https://github.com/AlexeyVlasenko/react-native-maps.git#master":
   version "0.23.0"
-  resolved "https://github.com/AlexeyVlasenko/react-native-maps.git#771c1f1c6b0b9cb435a3312a6bb614878a88cd61"
+  resolved "https://github.com/AlexeyVlasenko/react-native-maps.git#4ff2ca0d60eb2b367b418111565bb472ed940deb"
 
 react-native-paper@^2.15.1:
   version "2.15.1"

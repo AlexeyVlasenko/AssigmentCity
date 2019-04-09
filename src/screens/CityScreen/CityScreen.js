@@ -1,11 +1,32 @@
 import React, { Component } from 'react';
-import { Text, View } from "react-native";
+import { InteractionManager, ScrollView, View } from "react-native";
 import { ActivityIndicator, IconButton } from "react-native-paper";
 import Carousel, { Pagination } from "react-native-snap-carousel";
-import styles, { colors } from './index.style';
-import { itemWidth, sliderWidth } from './SliderEntry.style';
-import SliderEntry from "./SliderEntry";
+import { itemWidth, SliderComponent, sliderWidth } from './SliderComponent';
 import { ENTRIES1 } from "./entries";
+import MapView, { Marker } from "react-native-maps";
+import { Theme } from '#theme'
+
+const regions = [
+    {
+        latitude: 37.78825,
+        longitude: -122.4324,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+    },
+    {
+        latitude: 37.68825,
+        longitude: -122.4324,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+    },
+    {
+        latitude: 37.58825,
+        longitude: -122.4324,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+    }
+]
 
 class CityScreen extends Component {
     static navigationOptions = ({ navigation }) => ({
@@ -18,34 +39,42 @@ class CityScreen extends Component {
 
 
     state = {
-        slider1ActiveSlide: 0
+        slider1ActiveSlide: 0,
+        dataFetched: false
     };
 
-    _renderItemWithParallax ({item, index}, parallaxProps) {
+    componentDidMount() {
+        InteractionManager.runAfterInteractions(() => {
+            this.setState({ dataFetched: true })
+        });
+    }
+
+
+    _renderItemWithParallax({ item, index }, parallaxProps) {
         return (
-            <SliderEntry
+            <SliderComponent
                 data={item}
-                even={(index + 1) % 2 === 0}
                 parallax={true}
                 parallaxProps={parallaxProps}
             />
         );
     }
 
-    mainExample(number, title) {
+    renderCarousel() {
         const { slider1ActiveSlide } = this.state;
 
         return (
-            <View style={styles.exampleContainer}>
-                <Text style={styles.title}>{`Example ${number}`}</Text>
-                <Text style={styles.subtitle}>{title}</Text>
+            <View>
                 <Pagination
                     dotsLength={ENTRIES1.length}
                     activeDotIndex={slider1ActiveSlide}
-                    containerStyle={styles.paginationContainer}
-                    dotColor={'rgba(255, 255, 255, 0.92)'}
-                    dotStyle={styles.paginationDot}
-                    inactiveDotColor={colors.black}
+                    dotColor={Theme.DOT_COLOR}
+                    dotStyle={{
+                        width: 8,
+                        height: 8,
+                        borderRadius: 4,
+                    }}
+                    inactiveDotColor={Theme.DOT_COLOR}
                     inactiveDotOpacity={0.4}
                     inactiveDotScale={0.6}
                     carouselRef={this._slider1Ref}
@@ -61,26 +90,73 @@ class CityScreen extends Component {
                     firstItem={this.state.slider1ActiveSlide}
                     inactiveSlideScale={0.94}
                     inactiveSlideOpacity={0.7}
-                    // inactiveSlideShift={20}
-                    containerCustomStyle={styles.slider}
-                    contentContainerCustomStyle={styles.sliderContentContainer}
-                    loop={true}
-                    loopClonesPerSide={2}
-                    autoplay={true}
-                    autoplayDelay={500}
-                    autoplayInterval={3000}
-                    onSnapToItem={(index) => this.setState({ slider1ActiveSlide: index })}
+                    loop={false}
+                    loopClonesPerSide={3}
+                    onSnapToItem={(index) => {
+                        this.setState({ slider1ActiveSlide: index });
+                        this.animateCamera(index)
+                    }}
+                    removeClippedSubviews={false}
                 />
             </View>
         );
+
+    }
+
+
+    async animateCamera(index) {
+        const camera = await this.map.getCamera();
+        camera.center.latitude = regions[index].latitude;
+        camera.center.longitude = regions[index].longitude;
+        this.map.animateCamera(camera, { duration: 1000 });
     }
 
     render() {
-        return (
-            <View style={{ backgroundColor: 'black', flex: 1, justifyContent: 'center' }}>
-                {this.mainExample(1, 'Default layout | Loop | Autoplay | Parallax | Scale | Opacity | Pagination with tappable dots')}
-            </View>
-        );
+        const { dataFetched } = this.state;
+
+        if (dataFetched) {
+            return (
+                <ScrollView contentContainerStyle={{ flexGrow: 1 }} style={{ backgroundColor: Theme.BG }}>
+
+                    <MapView
+                        provider={'google'}
+                        initialCamera={{
+                            center: {
+                                latitude: 37.78825,
+                                longitude: -122.4324,
+                            },
+                            pitch: 0,
+                            heading: 90,
+                            altitude: 1000,
+                            zoom: 15,
+                        }}
+                        ref={ref => {
+                            this.map = ref;
+                        }}
+                        style={{ height: 200, width: '100%' }}
+                    >
+                        {regions.map((region, index) => {
+                            return (
+                                <Marker
+                                    key={index.toString()}
+                                    coordinate={region}
+                                />
+                            )
+                        })}
+                    </MapView>
+
+
+                    {this.renderCarousel()}
+                </ScrollView>
+            );
+        }
+        else {
+            return (
+                <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                    <ActivityIndicator animating={true} size={'large'}/>
+                </View>
+            )
+        }
     }
 }
 
