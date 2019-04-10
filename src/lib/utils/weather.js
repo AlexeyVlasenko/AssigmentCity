@@ -1,4 +1,4 @@
-const URL = 'http://api.openweathermap.org/data/2.5/weather';
+const URL = 'https://api.openweathermap.org/data/2.5/weather';
 const KEY = '5bcd86e936ba5c6a52774c90191a8d8a';
 
 export const getWeather = async (coords) => {
