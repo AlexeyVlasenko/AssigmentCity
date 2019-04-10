@@ -4,13 +4,22 @@ import Geolocation from 'react-native-geolocation-service';
 
 import LocationContext from './LocationContext';
 
+const permissionRequestText = {
+    title: 'AssigmentCity Location Permission',
+    message:
+        'With location enabled you can easily ' +
+        'book uber or check how sightseeing is far.',
+    buttonPositive: 'OK',
+};
+
 class LocationProvider extends Component {
     state = {
         location: null,
+        watchId: '',
     };
 
     componentDidMount() {
-        this.initObserver().catch(err => console.warn(err));
+        this.initObserver();
     };
 
     componentWillUnmount() {
@@ -24,7 +33,7 @@ class LocationProvider extends Component {
     initObserver = async () => {
         if (await this.requestLocPermission()) {
             const { watchPosition } = Geolocation;
-            const watchId = watchPosition(this.handleLocationChange, ()=> this.handleError(watchId), {
+            const watchId = watchPosition(this.handleLocationChange, () => this.handleError(watchId), {
                 enableHighAccuracy: true,
                 showLocationDialog: false
             });
@@ -36,37 +45,32 @@ class LocationProvider extends Component {
         const isIOS = Platform.OS === 'ios';
 
         if (isIOS) {
-            return true
+            return true;
         }
 
         try {
+            const { PERMISSIONS, RESULTS } = PermissionsAndroid;
             const granted = await PermissionsAndroid.request(
-                PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-                {
-                    title: 'AssigmentCity Location Permission',
-                    message:
-                        'With location enabled you can easily ' +
-                        'book uber or check how sightseeing is far.',
-                    buttonPositive: 'OK',
-                },
+                PERMISSIONS.ACCESS_FINE_LOCATION,
+                permissionRequestText,
             );
-            return granted === PermissionsAndroid.RESULTS.GRANTED;
+            return granted === RESULTS.GRANTED;
         } catch (err) {
             return false;
         }
     };
 
     handleError = (watchId) => {
-        console.warn(watchId)
         const { clearWatch } = Geolocation;
-        setTimeout(()=> {
+
+        setTimeout(() => {
             clearWatch(watchId);
-            this.initObserver().catch(err => console.warn(err));
+            this.initObserver();
         }, 4000)
     };
 
     handleLocationChange = (location) => {
-        console.warn(location)
+        console.warn(location);
         this.setState({ location });
     };
 
