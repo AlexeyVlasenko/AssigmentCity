@@ -12,41 +12,41 @@
   {
     "id": "2",
     "name": "Santiago",
-    "description": "A very nice city",
+    "description": "Founded in 1541 by the Spanish conqueror Pedro de Valdivia, Santiago has been the capital city of Chile since colonial times. The city has a downtown core of 19th-century neoclassical architecture and winding side-streets, dotted by art deco, neo-gothic, and other styles. Santiago's cityscape is shaped by several stand-alone hills and the fast-flowing Mapocho River, lined by parks such as Parque Forestal. The Andes Mountains can be seen from most points in the city. ",
     "location": [
-      1,
-      2
+        33.4489,
+        70.6693
     ],
-    "image": "https://i.uaportal.com/2019/4/4/965.jpg?size=960x640"
+    "image": "https://i3.visitchile.com/img/GalleryContent/1426/slider/11122-city-tour-santiago-de-chile.jpg"
   },
   {
     "id": "3",
     "name": "London",
-    "description": "A very nice city",
+    "description": "London is considered to be one of the world's most important global cities[16][17][18] and has been termed the world's most powerful,[19] most desirable,[20] most influential,[21] most visited,[22] most expensive,[23][24] innovative,[25] sustainable,[26] most investment friendly,[27] most popular for work,[28] and the most vegetarian friendly[29] city in the world. London exerts a considerable impact upon the arts, commerce, education, entertainment, fashion, finance, healthcare, media, professional services, research and development, tourism and transportation.[30][31] London ranks 26 out of 300 major cities for economic performance.[32] It is one of the largest financial centres[33] and has either the fifth or sixth largest metropolitan area GDP.",
     "location": [
-      1,
-      2
+        51.5074,
+        0.1278
     ],
-    "image": "https://img02.rl0.ru/91956e2b6a57e666d39f55ff8100026d/e1200x800/news.rambler.ru/img/2019/02/10115232.731493.2555.jpg"
+    "image": "https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/08/15/18/london-city.jpg?w968h681"
   },
   {
     "id": "4",
     "name": "Chicago",
-    "description": "A very nice city",
+    "description": "Located on the shores of freshwater Lake Michigan, Chicago was incorporated as a city in 1837 near a portage between the Great Lakes and the Mississippi River watershed and grew rapidly in the mid-nineteenth century.[7] After the Great Chicago Fire of 1871, which destroyed several square miles and left more than 100,000 homeless, the city made a concerted effort to rebuild.[8] The construction boom accelerated population growth throughout the following decades, and by 1900 Chicago was the fifth largest city in the world.",
     "location": [
-      1,
-      2
+        41.8781,
+        87.6298
     ],
-    "image": "https://i.ytimg.com/vi/x3yM_WiJJng/maxresdefault.jpg"
+    "image": "https://media.cntraveler.com/photos/5a71f382a140f404d7367e6f/4:3/w_420,c_limit/Chicago-Riverwalk__2018_ALA_Riverwalk2017_6709.jpg"
   },
   {
     "id": "5",
-    "name": "Kyiv",
-    "description": "A very nice city",
+    "name": "Brugge",
+    "description": "Bruges (German: Brügge) is the capital and largest city of the province of West Flanders in the Flemish Region of Belgium, in the northwest of the country. The area of the whole city amounts to more than 13,840 hectares (138.4 sq km; 53.44 sq miles), including 1,075 hectares off the coast, at Zeebrugge (from Brugge aan zee,[2] meaning \"Bruges by the Sea\").[3] The historic city centre is a prominent World Heritage Site of UNESCO. It is oval in shape and about 430 hectares in size. The city's total population is 117,073 (1 January 2008),[4] of whom around 20,000 live in the city centre. The metropolitan area, including the outer commuter zone, covers an area of 616 km2 (238 sq mi) and has a total of 255,844 inhabitants as of 1 January 2008.",
     "location": [
-      1,
-      2
+        51.2093,
+        3.2247
     ],
-    "image": "https://beztabu.net/uploads/770x433_DIR/media_news/2019/04/5cab369f10e6e655839144.jpg"
+    "image": "https://worldtravelforseniors.com/wp-content/uploads/2017/05/bruges.jpg"
   }
 ]
