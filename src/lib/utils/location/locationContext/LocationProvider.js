@@ -9,7 +9,7 @@ class LocationProvider extends Component {
     };
 
     componentDidMount() {
-        this.initObserver().catch(err => console.warn(err));
+        this.initObserver().catch(err => err);
     };
 
     componentWillUnmount() {
@@ -18,13 +18,13 @@ class LocationProvider extends Component {
     }
 
     initObserver = async () => {
-        const { watchPosition } = navigator.geolocation;
-
-
         if (await this.requestLocPermission()) {
-            const { getCurrentPosition } = navigator.geolocation;
-            getCurrentPosition(this.handleLocationChange);
-            watchPosition(this.handleLocationChange);
+            const { watchPosition } = navigator.geolocation;
+            watchPosition(this.handleLocationChange, console.log, {
+                enableHighAccuracy: true,
+                maximumAge: 0,
+                distanceFilter: 0
+            });
         }
     };
 
@@ -39,11 +39,10 @@ class LocationProvider extends Component {
             const granted = await PermissionsAndroid.request(
                 PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
                 {
-                    title: 'Cool Photo App Camera Permission',
+                    title: 'AssigmentCity Location Permission',
                     message:
-                        'Cool Photo App needs access to your camera ' +
-                        'so you can take awesome pictures.',
-                    buttonNegative: 'Cancel',
+                        'With location enabled you can easily ' +
+                        'book uber or check how sightseeing is far.',
                     buttonPositive: 'OK',
                 },
             );

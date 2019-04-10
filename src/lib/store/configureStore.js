@@ -25,6 +25,7 @@ const rootReducer = combineReducers({
 const rootPersistConfig = {
     key: 'root',
     storage,
+    blacklist: ['city']
 };
 
 const store = createStore(
