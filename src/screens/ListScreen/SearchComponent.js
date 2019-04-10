@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Platform, SafeAreaView, StyleSheet, View } from "react-native";
 import { Searchbar } from "react-native-paper";
+
 import { Theme } from "#theme";
 
 const SearchComponent = ({ onChangeText, value, onIconPress }) => (

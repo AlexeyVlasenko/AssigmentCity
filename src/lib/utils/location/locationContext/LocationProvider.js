@@ -70,7 +70,6 @@ class LocationProvider extends Component {
     };
 
     handleLocationChange = (location) => {
-        console.warn(location);
         this.setState({ location });
     };
 

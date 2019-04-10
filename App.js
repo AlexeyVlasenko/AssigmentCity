@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// @TODO: optimize import alias
 import { persistor, store } from '#store/configureStore';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { Provider as ReduxProvider } from 'react-redux';
@@ -22,6 +21,6 @@ class App extends Component {
             </ReduxProvider>
         );
     }
-}
+};
 
 export default App;

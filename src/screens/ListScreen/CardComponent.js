@@ -154,7 +154,6 @@ const styles = StyleSheet.create({
     },
 });
 
-
 CardComponent.propTypes = {
     city: PropTypes.object.isRequired,
     onLike: PropTypes.func.isRequired,

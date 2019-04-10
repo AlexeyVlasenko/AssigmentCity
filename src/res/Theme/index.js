@@ -1,5 +1,5 @@
-import colors from './colors'
-import textStyles from './textStyles'
+import colors from './colors';
+import textStyles from './textStyles';
 
 module.exports = {
     ...colors,
