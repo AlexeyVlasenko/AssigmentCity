@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { InteractionManager, ScrollView, View } from "react-native";
+import MapView, { Marker } from "react-native-maps";
 import { ActivityIndicator, IconButton } from "react-native-paper";
 import Carousel, { Pagination } from "react-native-snap-carousel";
-import { itemWidth, SliderComponent, sliderWidth } from './SliderComponent';
-import MapView, { Marker } from "react-native-maps";
-import { Theme } from '#theme'
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { citiesActions, cityActions } from '#store/actionCreators';
+
+import { cityActions } from '#store/actionCreators';
 import LikeButton from "./LikeButton";
+import { itemWidth, SliderComponent, sliderWidth } from './SliderComponent';
+import { Theme } from '#theme'
 
 class CityScreen extends Component {
     static navigationOptions = ({ navigation }) => ({
@@ -165,7 +166,7 @@ class CityScreen extends Component {
     }
 }
 
-const mapState = ({ city, cities }) => ({
+const mapState = ({ city }) => ({
     currentCity: city.city,
     cityLoading: city.cityLoading,
 });

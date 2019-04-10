@@ -8,7 +8,7 @@ export const getCity = (id) => {
         const data = await api.getCity(id);
 
         dispatch({ type, data });
-    }
+    };
 };
 
 export const resetCity = () => {
@@ -16,5 +16,5 @@ export const resetCity = () => {
 
     return dispatch => {
         dispatch({ type })
-    }
+    };
 };

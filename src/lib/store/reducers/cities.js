@@ -16,14 +16,17 @@ const indexOfLike = (likes, like) => {
     }
 
     return -1;
-}
+};
 
 const sortCitiesByLikes = (likes) => (first, second) => {
     const firstLike = likes.find(like => like.id === first.id);
     const secondLike = likes.find(like => like.id === second.id);
 
     if (!firstLike && !secondLike) {
-        return String(first.name).toLowerCase().localeCompare(second.name.toLowerCase());
+        const firstName = String(first.name).toLowerCase();
+        const secondName =  second.name.toLowerCase();
+
+        return firstName.localeCompare(secondName);
     } else if (firstLike && secondLike) {
         return secondLike.likedAt - firstLike.likedAt;
     } else {
@@ -42,13 +45,13 @@ const processLike = (state, like) => {
     }
 
     return { ...state, likes };
-}
+};
 
 const processCities = (state, data) => {
     const cities = data.sort(sortCitiesByLikes(state.likes));
 
     return { ...state, cities, citiesLoading: false };
-}
+};
 
 export default (state = initialState, action) => {
     const { type, data } = action;
@@ -56,7 +59,11 @@ export default (state = initialState, action) => {
         case ActionTypes.GET_CITIES:
             return processCities(state, data);
         case ActionTypes.SEARCH_CITIES:
-            return { ...state, searchResult: data, searchLoading: false };
+            return {
+                ...state,
+                searchResult: data,
+                searchLoading: false,
+            };
         case ActionTypes.LIKE_CITY:
             return processLike(state, data);
         default:

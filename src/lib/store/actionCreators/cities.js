@@ -8,8 +8,8 @@ export const getCities = () => {
         const data = await api.getCities();
 
         dispatch({ type, data });
-    }
-}
+    };
+};
 
 export const searchCities = (query) => {
     const type = ActionTypes.SEARCH_CITIES;
@@ -18,8 +18,8 @@ export const searchCities = (query) => {
         const data = await api.searchCities(query);
 
         dispatch({ type, data });
-    }
-}
+    };
+};
 
 export const likeCity = (id) => {
     const type = ActionTypes.LIKE_CITY;
@@ -30,4 +30,4 @@ export const likeCity = (id) => {
             likedAt: Date.now(),
         },
     };
-}
+};

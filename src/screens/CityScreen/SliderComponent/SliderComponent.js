@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import { Linking, Platform, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
+import { Linking, Platform, Text, View } from 'react-native';
+import { Button } from 'react-native-paper';
 import { ParallaxImage } from 'react-native-snap-carousel';
-import styles from './SliderComponent.style';
-import ReadMore from "#lib/components/ReadMore";
-import { Button } from "react-native-paper";
+
+import ReadMore from '#lib/components/ReadMore';
+import { LocationContext } from '#lib/utils/location/locationContext';
+
 import { Theme } from '#theme';
-import { LocationContext } from "../../../lib/utils/location/locationContext";
+import styles from './SliderComponent.style';
 
 export default class SliderComponent extends Component {
-
     static propTypes = {
         data: PropTypes.object.isRequired,
         even: PropTypes.bool,
@@ -104,4 +105,4 @@ export default class SliderComponent extends Component {
             </View>
         );
     }
-}
+};
