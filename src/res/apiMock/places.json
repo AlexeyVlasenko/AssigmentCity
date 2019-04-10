@@ -31,5 +31,137 @@
     "name": "Expocenter of Ukraine",
     "description": "Expocenter of Ukraine is a permanent multi-purpose exhibition complex in the Teremky neighborhood of Kiev, Ukraine. Located on the outskirts of the scenic Holosiiv Forest bigger portion of which has been converted into a park zone, the expo specializes in demonstrating Ukrainian achievements in the sphere of industry, science, and so on.",
     "image": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Kiev_Expocenter_070628.jpg"
+  },
+  {
+    "id": "1",
+    "cityId": "2",
+    "location": [
+      33.4202,
+      70.6314
+    ],
+    "name": "San Cristóbal Hill",
+    "description": "Cerro San Cristóbal is a hill in northern Santiago, Chile. It rises 850 m AMSL and about 300 m above the rest of Santiago; the peak is the second highest point in the city, after Cerro Renca. Cerro San Cristóbal was named by the Spanish conquistadors for St Christopher, in recognition of its use as a landmark.",
+    "image": "https://www.saba-chile.cl/documents/32910/985050/pi605-1024x537.jpg/8a852d83-66b0-afa2-c6f2-4349d6d12dfe?version=1.0&t=1545078848549&imagePreview=1"
+  },
+  {
+    "id": "2",
+    "cityId": "2",
+    "location": [
+      33.4403,
+      70.6433
+    ],
+    "name": "Santa Lucía Hill",
+    "description": "Santa Lucía Hill is a small hill in the centre of Santiago, Chile. It is situated between Alameda del Libertador Bernardo O'Higgins in the south, Santa Lucía Street in the west and Victoria Subercaseaux on the east. An adjacent metro station is named after it.",
+    "image": "https://steemitimages.com/640x0/http://euroinmobiliaria.cl/wp-content/uploads/2015/07/2015_07_23_Sta.Lucia5_.png"
+  },
+  {
+    "id": "3",
+    "cityId": "2",
+    "location": [
+      33.4429,
+      70.6539
+    ],
+    "name": "La Moneda Palace",
+    "description": "Expocenter of Ukraine is a permanent multi-purpose exhibition complex in the Teremky neighborhood of Kiev, Ukraine. Located on the outskirts of the scenic Holosiiv Forest bigger portion of which has been converted into a park zone, the expo specializes in demonstrating Ukrainian achievements in the sphere of industry, science, and so on.",
+    "image": "https://vizts.com/wp-content/uploads/2015/09/La-Meneda.jpg"
+  },
+  {
+    "id": "1",
+    "cityId": "3",
+    "location": [
+      51.5014,
+      0.1419
+    ],
+    "name": "Buckingham Palace",
+    "description": "Buckingham Palace is the London residence and administrative headquarters of the monarch of the United Kingdom. Located in the City of Westminster, the palace is often at the centre of state occasions and royal hospitality. It has been a focal point for the British people at times of national rejoicing and mourning.",
+    "image": "https://cdn.londonandpartners.com/visit/london-organisations/buckingham-palace/100223-640x360-buckingham-palace-dusk-640.jpg"
+  },
+  {
+    "id": "2",
+    "cityId": "3",
+    "location": [
+      51.5055,
+      0.0754
+    ],
+    "name": "Tower Bridge",
+    "description": "Tower Bridge is a combined bascule and suspension bridge in London, built between 1886 and 1894. The bridge crosses the River Thames close to the Tower of London and has become an iconic symbol of London. Because of this, Tower Bridge is sometimes confused with London Bridge, situated some 0.5 mi upstream.",
+    "image": "https://secretadventures.org/images/secretadventures_img_hero_sail_throught_tower_bridge.jpg"
+  },
+  {
+    "id": "3",
+    "cityId": "3",
+    "location": [
+      50.377793,
+      30.479604
+    ],
+    "name": "Westminster Abbey",
+    "description": "Westminster Abbey, formally titled the Collegiate Church of Saint Peter at Westminster, is a large, mainly Gothic abbey church in the City of Westminster, London, England, just to the west of the Palace of Westminster.",
+    "image": "http://www.thecommentator.com/system/articles/inner_pictures/000/004/890/original/Westminster_Abbey.jpg?1398071139"
+  },
+  {
+    "id": "1",
+    "cityId": "4",
+    "location": [
+      41.8826,
+      87.6226
+    ],
+    "name": "Millennium Park",
+    "description": "Millennium Park is a public park located in the Loop community area of Chicago in Illinois operated by the Chicago Department of Cultural Affairs and managed by MB Real Estate.",
+    "image": "https://www.omnihotels.com/-/media/images/hotels/chidtn/activities/chidtn-millenium-park.jpg?h=660&la=en&w=1170"
+  },
+  {
+    "id": "2",
+    "cityId": "4",
+    "location": [
+      41.8917,
+      87.6043
+    ],
+    "name": "Navy Pier",
+    "description": "Navy Pier is a 3,300-foot-long pier on the Chicago shoreline of Lake Michigan. It is located in the Streeterville neighborhood of the Near North Side community area.",
+    "image": "http://scene-chicago.com/scene/wp-content/uploads/2018/09/gf.jpg"
+  },
+  {
+    "id": "3",
+    "cityId": "4",
+    "location": [
+      41.8796,
+      87.6237
+    ],
+    "name": "The Art Institute of Chicago",
+    "description": "The Art Institute of Chicago, founded in 1879 and located in Chicago's Grant Park, is one of the oldest and largest art museums in the United States. Recognized for its curatorial efforts and popularity among visitors, the museum hosts approximately 1.5 million guests annually.",
+    "image": "https://timedotcom.files.wordpress.com/2014/09/148616068.jpg"
+  },
+  {
+    "id": "1",
+    "cityId": "5",
+    "location": [
+      51.2221,
+      6.2237
+    ],
+    "name": "Hariksee",
+    "description": "The Hariksee is a lake in the Niederrhein \"Lower Rhine\" region in North Rhine-Westphalia, Germany. It has a surface area of 0.2 km². The River Schwalm flows through the lake.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Hariksee_Inselschloesschen_2016.jpg"
+  },
+  {
+    "id": "2",
+    "cityId": "5",
+    "location": [
+      51.2606,
+      6.1818
+    ],
+    "name": "Nature and Animal Park Brueggen",
+    "description": "Especially in summer,  this park would be nice. It has two parts. A big playing ground area with many attractions. Be aware that these attractions are outdated and do not comply to current safety regulations at all and there is no supervision on the park. This part of the park would be best for kids from 5-12 years. The other half is the zoo part. This has some basic animals like African cows and camels and meerkats. It's ok, also outdated and not very big areas per animal.",
+    "image": "https://aff.bstatic.com/images/hotel/840x460/941/94138115.jpg"
+  },
+  {
+    "id": "3",
+    "cityId": "5",
+    "location": [
+      51.2403,
+      6.1858
+    ],
+    "name": "Castle Brüggen",
+    "description": "Brüggen Castle is a water castle in the southeastern part of the Lower Rhine municipality of Brüggen in North Rhine-Westphalia. It was the most important castle in the north of the Duchy of Jülich. The castle was built by the Count of Kessel in the 13th century to guard a ford over the River Schwalm.",
+    "image": "https://mw2.google.com/mw-panoramio/photos/medium/19318410.jpg"
   }
 ]

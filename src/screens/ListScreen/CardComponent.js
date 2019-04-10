@@ -44,7 +44,7 @@ class CardComponent extends Component {
 
         return (
             <View style={styles.distanceContainer}>
-                <Text style={Theme.textStyles.distance}>{location ? distance.toFixed(2) : ''}</Text>
+                <Text style={Theme.textStyles.distance}>{location ? `${parseInt(distance)} KM` : ''}</Text>
                 <Icon name={'chevron-right'} size={24} style={{ width: 16 }} color={'white'}/>
             </View>
         );
