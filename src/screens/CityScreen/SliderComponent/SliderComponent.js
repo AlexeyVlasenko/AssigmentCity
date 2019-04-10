@@ -6,6 +6,7 @@ import styles from './SliderComponent.style';
 import ReadMore from "../../../lib/components/ReadMore";
 import { Button } from "react-native-paper";
 import { Theme } from '#theme';
+import { LocationContext } from "../../../lib/utils/location/locationContext";
 
 export default class SliderComponent extends Component {
 
@@ -43,10 +44,21 @@ export default class SliderComponent extends Component {
         }
     };
 
-    proceedUber = () => {
-        const { data: { location } } = this.props;
 
-        Linking.openURL(`https://m.uber.com/ul/?client_id=VDtTVW2mkxKS9ygc6RGCQ8jV_1PRwr5p&action=setPickup&pickup[latitude]=37.775818&pickup[longitude]=-122.418028&dropoff[latitude]=${location[0]}&dropoff[longitude]=${location[1]}`)
+    _renderUberButton = ({ location }) => {
+        return (
+            <Button disabled={!location} icon="local-taxi" mode="contained" onPress={() => this.proceedUber(location)}>
+                Book Uber
+            </Button>
+        )
+    };
+
+    proceedUber = ({ coords }) => {
+        const { data: { location } } = this.props;
+        const pickLat = coords.latitude;
+        const pickLong = coords.longitude;
+
+        Linking.openURL(`https://m.uber.com/ul/?client_id=VDtTVW2mkxKS9ygc6RGCQ8jV_1PRwr5p&action=setPickup&pickup[latitude]=${pickLat}&pickup[longitude]=${pickLong}&dropoff[latitude]=${location[0]}&dropoff[longitude]=${location[1]}`)
     };
 
     render() {
@@ -78,9 +90,10 @@ export default class SliderComponent extends Component {
                     <Button icon="directions" mode="contained" onPress={this.proceedDirections}>
                         Direction
                     </Button>
-                    <Button icon="local-taxi" mode="contained" onPress={this.proceedUber}>
-                        Book Uber
-                    </Button>
+
+                    <LocationContext.Consumer>
+                        {this._renderUberButton}
+                    </LocationContext.Consumer>
                 </View>
 
 

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { PermissionsAndroid, Platform } from 'react-native';
+import Geolocation from 'react-native-geolocation-service';
 
 import LocationContext from './LocationContext';
 
@@ -9,22 +10,25 @@ class LocationProvider extends Component {
     };
 
     componentDidMount() {
-        this.initObserver().catch(err => err);
+        this.initObserver().catch(err => console.warn(err));
     };
 
     componentWillUnmount() {
-        const { stopObserving } = navigator.geolocation;
+        const { clearWatch, stopObserving } = Geolocation;
+        const { watchId } = this.state;
+
+        clearWatch(watchId);
         stopObserving();
     }
 
     initObserver = async () => {
         if (await this.requestLocPermission()) {
-            const { watchPosition } = navigator.geolocation;
-            watchPosition(this.handleLocationChange, console.log, {
+            const { watchPosition } = Geolocation;
+            const watchId = watchPosition(this.handleLocationChange, ()=> this.handleError(watchId), {
                 enableHighAccuracy: true,
-                maximumAge: 0,
-                distanceFilter: 0
+                showLocationDialog: false
             });
+            this.setState({ watchId })
         }
     };
 
@@ -52,7 +56,17 @@ class LocationProvider extends Component {
         }
     };
 
+    handleError = (watchId) => {
+        console.warn(watchId)
+        const { clearWatch } = Geolocation;
+        setTimeout(()=> {
+            clearWatch(watchId);
+            this.initObserver().catch(err => console.warn(err));
+        }, 4000)
+    };
+
     handleLocationChange = (location) => {
+        console.warn(location)
         this.setState({ location });
     };
 
