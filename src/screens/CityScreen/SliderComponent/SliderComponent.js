@@ -3,7 +3,7 @@ import { Linking, Platform, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { ParallaxImage } from 'react-native-snap-carousel';
 import styles from './SliderComponent.style';
-import ReadMore from "../../../lib/components/ReadMore";
+import ReadMore from "#lib/components/ReadMore";
 import { Button } from "react-native-paper";
 import { Theme } from '#theme';
 import { LocationContext } from "../../../lib/utils/location/locationContext";

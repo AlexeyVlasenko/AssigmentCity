@@ -7,9 +7,9 @@ import { Surface, TouchableRipple } from "react-native-paper";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { Theme } from '#theme'
-import { getWeather } from '../../lib/utils/weather';
-import { getDistance } from '../../lib/utils/location/common';
-import { LocationContext } from '../../lib/utils/location/locationContext';
+import { getWeather } from '#lib/utils/weather';
+import { getDistance } from '#lib/utils/location/common';
+import { LocationContext } from '#lib/utils/location/locationContext';
 
 class CardComponent extends Component {
     state = {
