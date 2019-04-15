@@ -1,20 +1,27 @@
 import { city as ActionTypes } from '../actionTypes';
-import * as api from "../../../res/apiMock/api";
+import * as api from '../../services/cities/citiesService';
+
+import { validateJSON } from '../../utils/store/validation';
 
 export const getCity = (id) => {
-    const type = ActionTypes.GET_CITY;
+  const type = ActionTypes.GET_CITY;
 
-    return async dispatch => {
-        const data = await api.getCity(id);
+  return async (dispatch) => {
+    const json = await api.getCity(id);
+    const error = validateJSON(json);
 
-        dispatch({ type, data });
-    };
+    if (error) {
+      return dispatch({ type, error });
+    }
+
+    return dispatch({ type, data: json });
+  };
 };
 
 export const resetCity = () => {
-    const type = ActionTypes.RESET_CITY;
+  const type = ActionTypes.RESET_CITY;
 
-    return dispatch => {
-        dispatch({ type })
-    };
+  return (dispatch) => {
+    dispatch({ type });
+  };
 };

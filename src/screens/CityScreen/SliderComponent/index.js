@@ -1,7 +1,4 @@
 import SliderComponent from './SliderComponent';
-import * as SliderComponentStyles from './SliderComponent.style';
 
-module.exports = {
-    SliderComponent,
-    ...SliderComponentStyles
-};
+export * from './SliderComponent.style';
+export { SliderComponent };

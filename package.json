@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint *.js **/*.js"
   },
   "dependencies": {
     "react": "16.8.3",
@@ -29,7 +30,14 @@
     "@types/react-native": "^0.57.42",
     "@types/react-navigation": "^3.0.6",
     "babel-jest": "^24.7.1",
+    "eslint": "^5.16.0",
+    "babel-eslint": "^10.0.1",
+    "eslint-plugin-react": "^7.12.4",
     "babel-plugin-relative-path-import": "^2.0.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-import-resolver-babel-plugin-root-import": "^1.1.1",
+    "eslint-plugin-import": "^2.17.1",
+    "eslint-plugin-jsx-a11y": "^6.2.1",    
     "jest": "^24.7.1",
     "metro-react-native-babel-preset": "^0.53.1",
     "prop-types": "^15.7.2",

@@ -1,3 +1,4 @@
+/* global __DEV__ */
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 
 import thunk from 'redux-thunk';
@@ -8,29 +9,29 @@ import { createLogger } from 'redux-logger';
 
 import { cities, city } from './reducers';
 
-var middleware = [thunk];
+const middleware = [thunk];
 
 if (__DEV__) {
-    const logger = createLogger();
-    const devMiddleware = [logger];
+  const logger = createLogger();
+  const devMiddleware = [logger];
 
-    middleware.push(...devMiddleware);
+  middleware.push(...devMiddleware);
 }
 
 const rootReducer = combineReducers({
-    cities,
-    city,
+  cities,
+  city,
 });
 
 const rootPersistConfig = {
-    key: 'root',
-    storage,
-    blacklist: ['city'],
+  key: 'root',
+  storage,
+  blacklist: ['city'],
 };
 
 const store = createStore(
-    persistReducer(rootPersistConfig, rootReducer),
-    composeWithDevTools(applyMiddleware(...middleware)),
+  persistReducer(rootPersistConfig, rootReducer),
+  composeWithDevTools(applyMiddleware(...middleware)),
 );
 
 const persistor = persistStore(store);

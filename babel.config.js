@@ -1,42 +1,42 @@
 const presets = ['module:metro-react-native-babel-preset'];
 
 const env = {
-    production: {
-        plugins: ['react-native-paper/babel'],
-    },
+  production: {
+    plugins: ['react-native-paper/babel'],
+  },
 };
 
 const plugins = [
-    [
-        'babel-plugin-relative-path-import',
+  [
+    'babel-plugin-relative-path-import',
+    {
+      paths: [
         {
-            paths: [
-                {
-                    "rootPathPrefix": "#screens",
-                    "rootPathSuffix": "./src/screens"
-                },
-                {
-                    "rootPathPrefix": "#lib",
-                    "rootPathSuffix": "./src/lib/"
-                },
-                {
-                    "rootPathPrefix": "#store",
-                    "rootPathSuffix": "./src/lib/store"
-                },
-                {
-                    "rootPathPrefix": "#theme",
-                    "rootPathSuffix": "./src/res"
-                }
-            ]
-        }
+          rootPathPrefix: '#screens',
+          rootPathSuffix: './src/screens',
+        },
+        {
+          rootPathPrefix: '#lib',
+          rootPathSuffix: './src/lib/',
+        },
+        {
+          rootPathPrefix: '#store',
+          rootPathSuffix: './src/lib/store',
+        },
+        {
+          rootPathPrefix: '#theme',
+          rootPathSuffix: './src/res',
+        },
+      ],
+    },
 
-    ]
+  ],
 
 ];
 
 
 module.exports = {
-    presets,
-    env,
-    plugins
+  presets,
+  env,
+  plugins,
 };
